@@ -14,6 +14,9 @@ import authRoutes from "./routes/auth.js";
 import userRoutes from "./routes/users.js";
 import postRoutes from "./routes/posts.js";
 import { verifyToken } from "./middleware/auth.js";
+import User from "./models/user.js";
+import Post from "./models/Post.js";
+import {users, posts} from "./data/index.js";
 
 // configurations 
 
@@ -60,6 +63,11 @@ mongoose.connect(process.env.MONGO_URL, {
     useUnifiedTopology: true,
 }).then(()=> {
     app.listen(PORT,()=> console.log(`Server port ${PORT}`));
+
+    // // ADDIND DATE JUST ONE TIME
+    // User.insertMany(users);
+    // User.insertMany(posts);
+
 }).catch((err)=> console.log(`${err} did not connect`))
 
 
